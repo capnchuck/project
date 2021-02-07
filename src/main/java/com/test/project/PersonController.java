@@ -53,16 +53,6 @@ class PersonController {
         linkTo(methodOn(PersonController.class).all()).withRel("persons"));
   }
 
-  
-  // @GetMapping("/get-person/{personId}")
-  // String one(@PathVariable Long personId) {
-  
-  //   Person person = repository.findById(personId) //
-  //       .orElseThrow(() -> new PersonNotFoundException(personId));
-  
-  //   return person.toString();
-  // }
-
   @DeleteMapping("/delete-person/{personId}")
   void deletePerson(@PathVariable Long personId) {
     repository.deleteById(personId);

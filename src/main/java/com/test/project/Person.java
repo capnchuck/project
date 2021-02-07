@@ -2,28 +2,25 @@ package com.test.project;
 
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.CascadeType;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "persons")
 class Person {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
 
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "personalInfo_id", referencedColumnName = "id")
   private PersonalInfo personalInfo;
+
+
+  // @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "person")
+  // private Set<Address> addresses = new HashSet<>();
 
   Person() {}
 
@@ -35,6 +32,10 @@ class Person {
   public Long getId() {
     return this.id;
   }
+
+  // public Set<Address> getAddresses(){
+  //   return this.addresses;
+  // }
 
   public void setId(Long id) {
     this.id = id;
