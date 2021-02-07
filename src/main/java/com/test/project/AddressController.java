@@ -13,18 +13,7 @@ public class AddressController {
     @Autowired
     private PersonRepository personRepository;
 
-    @GetMapping("/person/{personId}/addresses")
-    List<Address> all(@PathVariable long personId){
-
-      personRepository.findById(personId) //
-      .orElseThrow(() -> new PersonNotFoundException(personId));
-      
-      var addresses = addressRepository.findByPersonId(personId);
-
-      return addresses;
-    }
-
-    @GetMapping("/person/{personId}/addresses/{id}")
+    @GetMapping("/person/{personId}/get-address/{id}")
     Address all(@PathVariable long personId, @PathVariable long id){
 
       personRepository.findById(personId) //
@@ -36,7 +25,7 @@ public class AddressController {
       return address;
     }
 
-    @PostMapping("/person/{personId}/addresses/post-address")
+    @PostMapping("/person/{personId}/post-address")
     Address createAddress(@PathVariable (value = "personId") Long personId,
                                  @RequestBody Address address) {
       var person = personRepository.findById(personId)

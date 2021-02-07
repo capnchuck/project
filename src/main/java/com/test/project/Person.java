@@ -18,9 +18,8 @@ class Person {
   @JoinColumn(name = "personalInfo_id", referencedColumnName = "id")
   private PersonalInfo personalInfo;
 
-
-  // @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "person")
-  // private Set<Address> addresses = new HashSet<>();
+  @ManyToMany
+  private Set<Club> clubs = new HashSet<>();
 
   Person() {}
 
