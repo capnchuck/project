@@ -1,17 +1,12 @@
 package com.test.project.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.test.project.exception.PersonNotFoundException;
+import com.test.project.model.Club;
 import com.test.project.model.Person;
+import com.test.project.repository.ClubRepository;
 import com.test.project.repository.PersonRepository;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +21,13 @@ class PersonController {
   @Autowired
   private PersonRepository repository;
 
-  PersonController(PersonRepository repository) {
+  @Autowired
+  private ClubRepository clubRepository;
+
+  PersonController(PersonRepository repository, ClubRepository clubRepository) {
 
     this.repository = repository;
+    this.clubRepository = clubRepository;
   }
 
   @GetMapping("/get-person/{personId}")
@@ -47,6 +46,17 @@ class PersonController {
   
   @DeleteMapping("/delete-person/{personId}")
   void deletePerson(@PathVariable Long personId) {
-    repository.deleteById(personId);
+    Person person = repository.findById(personId) //
+        .orElseThrow(() -> new PersonNotFoundException(personId));
+
+    var clubs = clubRepository.findAll();
+
+    for(Club club : clubs){
+      if (club.getMembers().contains(person)){
+        club.getMembers().remove(person);
+      }
+    }
+
+    repository.delete(person);
   }
 }
