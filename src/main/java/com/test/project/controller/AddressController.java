@@ -1,7 +1,5 @@
 package com.test.project.controller;
 
-import java.util.List;
-
 import com.test.project.exception.AddressNotFoundException;
 import com.test.project.exception.PersonNotFoundException;
 import com.test.project.model.Address;
