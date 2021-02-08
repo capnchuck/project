@@ -1,6 +1,13 @@
-package com.test.project;
+package com.test.project.controller;
 
 import java.util.List;
+
+import com.test.project.exception.AddressNotFoundException;
+import com.test.project.exception.PersonNotFoundException;
+import com.test.project.model.Address;
+import com.test.project.repository.AddressRepository;
+import com.test.project.repository.PersonRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

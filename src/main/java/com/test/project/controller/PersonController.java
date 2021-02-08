@@ -1,7 +1,11 @@
-package com.test.project;
+package com.test.project.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.test.project.exception.PersonNotFoundException;
+import com.test.project.model.Person;
+import com.test.project.repository.PersonRepository;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 

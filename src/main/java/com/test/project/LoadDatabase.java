@@ -1,5 +1,13 @@
 package com.test.project;
 
+import com.test.project.model.Address;
+import com.test.project.model.Club;
+import com.test.project.model.Person;
+import com.test.project.repository.AddressRepository;
+
+import com.test.project.repository.ClubRepository;
+import com.test.project.repository.PersonRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

@@ -1,4 +1,4 @@
-package com.test.project;
+package com.test.project.model;
 
 import java.util.Objects;
 import javax.persistence.*;
@@ -7,7 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "Addresses")
-class Address {
+public class Address {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +24,9 @@ class Address {
   private String state;
   private String zipCode;
 
-  Address() {}
+  public Address() {}
 
-  Address(String address, String city, String state, String zipcode) {
+  public Address(String address, String city, String state, String zipcode) {
 
     this.address = address;
     this.city = city;

@@ -1,4 +1,4 @@
-package com.test.project;
+package com.test.project.model;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "clubs")
-class Club {
+public class Club {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +23,9 @@ class Club {
   private Set<Person> members = new HashSet<>();
   private String name;
 
-  Club() {}
+  public Club() {}
 
-  Club(String name) {
+  public Club(String name) {
 
     this.name = name;
   }

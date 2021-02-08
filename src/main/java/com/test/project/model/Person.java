@@ -1,4 +1,4 @@
-package com.test.project;
+package com.test.project.model;
 
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "persons")
-class Person {
+public class Person {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +21,9 @@ class Person {
   @ManyToMany
   private Set<Club> clubs = new HashSet<>();
 
-  Person() {}
+  public Person() {}
 
-  Person(String firstName, String lastName, String phoneNumber) {
+  public Person(String firstName, String lastName, String phoneNumber) {
 
     this.personalInfo = new PersonalInfo(firstName, lastName, phoneNumber);
   }

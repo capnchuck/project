@@ -1,4 +1,4 @@
-package com.test.project;
+package com.test.project.model;
 
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 
 @Entity
 @Table(name = "personalInfo")
-class PersonalInfo {
+public class PersonalInfo {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +25,9 @@ class PersonalInfo {
   @OneToOne(mappedBy = "personalInfo")
   private Person person;
 
-  PersonalInfo() {}
+  public PersonalInfo() {}
 
-  PersonalInfo(String firstName, String lastName, String phoneNumber) {
+  public PersonalInfo(String firstName, String lastName, String phoneNumber) {
 
     this.firstName = firstName;
     this.lastName = lastName;

@@ -1,4 +1,4 @@
-package com.test.project;
+package com.test.project.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class PersonNotFoundAdvice {
+public class PersonNotFoundAdvice {
 
   @ResponseBody
   @ExceptionHandler(PersonNotFoundException.class)
