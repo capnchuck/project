@@ -15,7 +15,7 @@ public class Club {
   @Column(name = "id")
   private Long id;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
   name = "club_members", 
   joinColumns = @JoinColumn(name = "personId"), 
