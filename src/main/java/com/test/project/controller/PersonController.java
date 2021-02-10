@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController 
-// @RequestMapping("v1")
+@RequestMapping("v1")
 class PersonController {
 
   @Autowired
@@ -40,52 +40,11 @@ class PersonController {
   }
 
   @GetMapping("/login")
-  public Person login() {
-  
-    // Person person = repository.findById(personId) //
-    //     .orElseThrow(() -> new PersonNotFoundException(personId));
-  
-    return null;
+  public String login() {
+
+    return "Failure";
   }
 
-  // @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
-  // public ModelAndView login(){
-  //     ModelAndView modelAndView = new ModelAndView();
-  //     // Person person = new Person();
-  //     // modelAndView.addObject("person", person);
-  //     modelAndView.setViewName("registration");
-  //     return modelAndView;
-  // }
-
-  @RequestMapping(value="/registration", method = RequestMethod.GET)
-  public ModelAndView registration(){
-      ModelAndView modelAndView = new ModelAndView();
-      Person person = new Person();
-      modelAndView.addObject("person", person);
-      // modelAndView.setViewName("registration");
-      return modelAndView;
-  }
-
-  @RequestMapping(value = "/registration", method = RequestMethod.POST)
-  public ModelAndView createNewUser(Person person, BindingResult bindingResult) {
-      ModelAndView modelAndView = new ModelAndView();
-      Person userExists = userService.findUserByUsername(person.getUsername());
-      if (userExists != null) {
-          bindingResult
-                  .rejectValue("username", "error.user",
-                          "There is already a user registered with the username provided");
-      }
-      if (bindingResult.hasErrors()) {
-          modelAndView.setViewName("registration");
-      } else {
-          userService.saveUser(person, "User");
-          modelAndView.addObject("successMessage", "User has been registered successfully");
-          modelAndView.addObject("person", new Person());
-          modelAndView.setViewName("registration");
-
-      }
-      return modelAndView;
-  }
 
   @GetMapping("/get-person/{personId}")
   Person one(@PathVariable Long personId) {
