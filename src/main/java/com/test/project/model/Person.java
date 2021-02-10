@@ -3,6 +3,7 @@ package com.test.project.model;
 import java.util.Objects;
 
 import javax.persistence.*;
+
 import java.util.*;
 
 @Entity
@@ -18,13 +19,22 @@ public class Person {
   @JoinColumn(name = "personalInfo_id", referencedColumnName = "id")
   private PersonalInfo personalInfo;
 
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+  private Set<Role> roles;
+
   @ManyToMany
   private Set<Club> clubs = new HashSet<>();
 
+  private String username;
+  private String password;
+
   public Person() {}
 
-  public Person(String firstName, String lastName, String phoneNumber) {
+  public Person(String firstName, String lastName, String phoneNumber, String username, String password) {
 
+    this.username = username;
+    this.password = password;
     this.personalInfo = new PersonalInfo(firstName, lastName, phoneNumber);
   }
 
@@ -32,12 +42,28 @@ public class Person {
     return this.id;
   }
 
-  // public Set<Address> getAddresses(){
-  //   return this.addresses;
-  // }
+  public String getUsername() {
+    return this.username;
+  }
+
+  public String getPassword() {
+    return this.password;
+  }
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public void setRoles(HashSet<Role> roles) {
+    this.roles = roles;
   }
 
   @Override
