@@ -7,16 +7,12 @@ import com.test.project.repository.AddressRepository;
 import com.test.project.repository.ClubRepository;
 import com.test.project.service.UserServiceImpl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 class LoadDatabase {
-
-  private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
   @Bean
     CommandLineRunner initDatabase(UserServiceImpl userService, ClubRepository clubRepository, AddressRepository addressRepository) {
@@ -41,7 +37,6 @@ class LoadDatabase {
       var club2 = clubRepository.save(new Club("Club 2"));
       var club3 = clubRepository.save(new Club("Club 3"));
 
-      
       club.getMembers().add(person);
       club.getMembers().add(person2);
       club.getMembers().add(person3);
