@@ -1,10 +1,11 @@
 package com.test.project.model;
 
-import java.util.Objects;
-
 import javax.persistence.*;
 
 import java.util.*;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
 @Table(name = "persons")
@@ -15,26 +16,26 @@ public class Person {
   @Column(name = "id")
   private Long id;
 
+  private String username;
+  private String password;
+  private String role;
+
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "personalInfo_id", referencedColumnName = "id")
   private PersonalInfo personalInfo;
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-  private Set<Role> roles;
-
   @ManyToMany
   private Set<Club> clubs = new HashSet<>();
 
-  private String username;
-  private String password;
+  public Person() 
+  {
+  }
 
-  public Person() {}
-
-  public Person(String firstName, String lastName, String phoneNumber, String username, String password) {
+  public Person(String firstName, String lastName, String phoneNumber, String username, String password, String role) {
 
     this.username = username;
     this.password = password;
+    this.role = role;
     this.personalInfo = new PersonalInfo(firstName, lastName, phoneNumber);
   }
 
@@ -42,16 +43,16 @@ public class Person {
     return this.id;
   }
 
-  public String getUsername() {
-    return this.username;
-  }
-
-  public String getPassword() {
-    return this.password;
+  public String getRole() {
+    return this.role;
   }
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
   }
 
   public void setUsername(String username) {
@@ -62,8 +63,20 @@ public class Person {
     this.password = password;
   }
 
-  public void setRoles(HashSet<Role> roles) {
-    this.roles = roles;
+  public String getUsername(){
+    return this.username;
+  }
+
+  public String getPassword(){
+    return this.password;
+  }
+
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+
+    list.add(new SimpleGrantedAuthority("ROLE_" + this.role));
+
+    return list;
   }
 
   @Override
@@ -80,10 +93,5 @@ public class Person {
   @Override
   public int hashCode() {
     return Objects.hash(this.id);
-  }
-
-  @Override
-  public String toString() {
-    return "Person{" + "id=" + this.id + "," + personalInfo.toString() + '}';
   }
 }

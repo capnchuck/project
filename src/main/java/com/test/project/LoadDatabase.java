@@ -3,12 +3,8 @@ package com.test.project;
 import com.test.project.model.Address;
 import com.test.project.model.Club;
 import com.test.project.model.Person;
-import com.test.project.model.Role;
 import com.test.project.repository.AddressRepository;
-
 import com.test.project.repository.ClubRepository;
-import com.test.project.repository.PersonRepository;
-import com.test.project.repository.RoleRepository;
 import com.test.project.service.UserServiceImpl;
 
 import org.slf4j.Logger;
@@ -23,20 +19,14 @@ class LoadDatabase {
   private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
   @Bean
-  CommandLineRunner initDatabase(PersonRepository repository, AddressRepository addressRepository, ClubRepository clubRepository, RoleRepository roleRepository, UserServiceImpl userService) {
+    CommandLineRunner initDatabase(UserServiceImpl userService, ClubRepository clubRepository, AddressRepository addressRepository) {
 
     return args -> {
-
-      var role = roleRepository.save(new Role());
-      role.setRole("Admin");
-      var role2 = roleRepository.save(new Role());
-      role2.setRole("User");
-
-      var person = userService.saveUser(new Person("Hero", "Failure", "801-000-0000", "hero1", "heee"), "Admin");
-      var person2 = userService.saveUser(new Person("John", "Light", "801-000-1111", "hero2", "heas"), "User");
-      var person3 = userService.saveUser(new Person("Calvin", "Shirt", "801-000-2222", "hero2", "hease"), "User");
-      var person4 = userService.saveUser(new Person("Billy", "Papers", "801-000-3333", "hero3", "heros"), "User");
-      var person5 = userService.saveUser(new Person("Scary", "Terry", "801-000-4444", "hero4", "heroos"), "User");
+      var person = userService.saveUser(new Person("Hero", "Failure", "801-000-0000", "hero1", "heee", "Admin"), "Admin");
+      var person2 = userService.saveUser(new Person("John", "Light", "801-000-1111", "hero2", "heas", "User"), "User");
+      var person3 = userService.saveUser(new Person("Calvin", "Shirt", "801-000-2222", "hero3", "hease", "User"), "User");
+      var person4 = userService.saveUser(new Person("Billy", "Papers", "801-000-3333", "hero4", "heros", "User"), "User");
+      var person5 = userService.saveUser(new Person("Scary", "Terry", "801-000-4444", "hero5", "heroos", "User"), "User");
 
       var address = addressRepository.save(new Address("123 N 456 S", "American Fork", "Utah", "84003"));
       var address2 = addressRepository.save(new Address("321 N 654 S", "American Fork", "Utah", "84003"));
