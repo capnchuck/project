@@ -71,6 +71,10 @@ public class Person {
     return this.password;
   }
 
+  public PersonalInfo getPersonalInfo(){
+    return this.personalInfo;
+  }
+
   public Collection<? extends GrantedAuthority> getAuthorities() {
     List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
 

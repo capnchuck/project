@@ -54,6 +54,10 @@ public class Address {
     return this.zipCode;
   }
 
+  public Person getPerson() {
+    return this.person;
+  }
+
   public void setId(Long id) {
     this.id = id;
   }

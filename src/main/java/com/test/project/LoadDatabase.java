@@ -22,11 +22,11 @@ class LoadDatabase {
     CommandLineRunner initDatabase(UserServiceImpl userService, ClubRepository clubRepository, AddressRepository addressRepository) {
 
     return args -> {
-      var person = userService.saveUser(new Person("Hero", "Failure", "801-000-0000", "hero1", "heee", "Admin"), "Admin");
-      var person2 = userService.saveUser(new Person("John", "Light", "801-000-1111", "hero2", "heas", "User"), "User");
-      var person3 = userService.saveUser(new Person("Calvin", "Shirt", "801-000-2222", "hero3", "hease", "User"), "User");
-      var person4 = userService.saveUser(new Person("Billy", "Papers", "801-000-3333", "hero4", "heros", "User"), "User");
-      var person5 = userService.saveUser(new Person("Scary", "Terry", "801-000-4444", "hero5", "heroos", "User"), "User");
+      var person = userService.saveUser(new Person("Hero", "Failure", "801-000-0000", "hero1", "heee", "Admin"));
+      var person2 = userService.saveUser(new Person("John", "Light", "801-000-1111", "hero2", "heas", "User"));
+      var person3 = userService.saveUser(new Person("Calvin", "Shirt", "801-000-2222", "hero3", "hease", "User"));
+      var person4 = userService.saveUser(new Person("Billy", "Papers", "801-000-3333", "hero4", "heros", "User"));
+      var person5 = userService.saveUser(new Person("Scary", "Terry", "801-000-4444", "hero5", "heroos", "User"));
 
       var address = addressRepository.save(new Address("123 N 456 S", "American Fork", "Utah", "84003"));
       var address2 = addressRepository.save(new Address("321 N 654 S", "American Fork", "Utah", "84003"));

@@ -48,7 +48,7 @@ class PersonController {
   @PreAuthorize("hasRole('ROLE_Admin')")
   @PostMapping("/post-person")
   Person newPerson(@RequestBody Person person) {
-    return userService.saveUser(person, person.getRole());
+    return userService.saveUser(person);
   }
   
   @PreAuthorize("hasRole('ROLE_Admin')")
