@@ -4,4 +4,4 @@ This project is designed as a personal test for using Springboot with an H2 data
 
 This repository is still a work in progress. User authentication, and tests have not been completed. 
 
-Here is a link to Postman Documentation for this project: https://www.postman.com/collections/946f0acb4f0adae78726
+Here is a link to Postman Documentation for this project: https://www.getpostman.com/collections/946f0acb4f0adae78726
